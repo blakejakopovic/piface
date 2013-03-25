@@ -121,7 +121,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install piface
+    $ gem install PiFace
 
 ### NOTE: Please ensure that you have first installed the [pfio C Library](https://github.com/thomasmacpherson/piface#c). You must also ensure that your Raspberry Pi has loaded SPI (eg. gpio load spi - using the [gpio Utility](https://projects.drogon.net/raspberry-pi/wiringpi/the-gpio-utility/))
 
