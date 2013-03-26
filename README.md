@@ -6,7 +6,7 @@ The [pfio C Library](https://github.com/thomasmacpherson/piface/blob/master/c/) 
 
 The PiFace has 8 inputs and 8 outputs. Both the inputs and outputs are linked to connectors 1-8 respectfully.
 
-Note: The pfio C library will set all outputs to 0 (off) when first initialised.
+Note: The pfio C library will set all outputs to 0 (off) when first initialized.
 
 ### Using Outputs
 Writing to outputs 1 to 8 with all turn on the LEDs. Write to outputs using 0 for off/disable and 1 for on/enable.
@@ -90,7 +90,7 @@ PiFace.read 6
 ```
 
 ### Using Buttons
-The PiFace has 4 built-in buttons that corrispond to inputs 1 to 4.
+The PiFace has 4 built-in buttons that correspond to inputs 1 to 4.
 ```ruby
 require 'piface'
 
