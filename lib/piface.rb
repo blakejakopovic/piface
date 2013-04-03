@@ -45,5 +45,5 @@ module Piface
   end
 end
 
-at_exit { PiFace.deinit }
-PiFace.init
+at_exit { Piface.deinit }
+Piface.init
