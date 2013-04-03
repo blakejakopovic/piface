@@ -1,3 +1,3 @@
-module PiFace
-  VERSION = "0.1.0"
+module Piface
+  VERSION = "0.3.0"
 end

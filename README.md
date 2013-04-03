@@ -6,10 +6,10 @@ The [pfio C Library](https://github.com/thomasmacpherson/piface/blob/master/c/) 
 
 The PiFace has 8 inputs and 8 outputs. Both the inputs and outputs are linked to connectors 1-8 respectfully.
 
-Note: The pfio C library will set all outputs to 0 (off) when first initialized.
+Note: The pfio C library will set all outputs to LOW (zero) when first initialized.
 
 ### Using Outputs
-Writing to outputs 1 to 8 with all turn on the LEDs. Write to outputs using 0 for off/disable and 1 for on/enable.
+Writing to outputs 1 to 8 with all turn on the LEDs. Write to outputs using Piface::LOW (or 0) for off/disable and Piface::HIGH (or 1) for on/enable.
 
 Please note that the PiFace outputs are all open-collectors (meaning that they do not output any voltage). Please read the [PiFace Manual](http://www.farnell.com/datasheets/1684425.pdf) for more information.
 
@@ -17,12 +17,12 @@ Please note that the PiFace outputs are all open-collectors (meaning that they d
 require 'piface'
 
 # Enable output 4
-PiFace.write 4, 1
+Piface.write 4, 1
 
 sleep 1 # wait one second
 
 # Disable output 4
-PiFace.write 4, 0
+Piface.write 4, 0
 ```
 
 ### Using Relays
@@ -31,12 +31,12 @@ Write to outputs 1 and 2 to control the relays (if jumpers JP5 and JP6 are enabl
 require 'piface'
 
 # Turn on the first relay
-PiFace.write 1, 1
+Piface.write 1, 1
 
 sleep 1 # wait one second
 
 # Turn off first relay
-PiFace.write 1, 0
+Piface.write 1, 0
 ```
 
 ### Using Classes
@@ -52,12 +52,12 @@ class Relay
   end
 
   def turn_on
-    PiFace.write @relay_number, 1
+    Piface.write @relay_number, 1
     @state = 1
   end
 
   def turn_off
-    PiFace.write @relay_number, 0
+    Piface.write @relay_number, 0
     @state = 0
   end
 
@@ -81,11 +81,11 @@ The PiFace uses digital inputs. Reading the value with return either a 0 or 1. S
 require 'piface'
 
 # Read value from input 6 (without active input)
-PiFace.read 6
+Piface.read 6
 # => 1
 
 # Read value from input 6 (with active input)
-PiFace.read 6
+Piface.read 6
 # => 0
 ```
 
@@ -97,7 +97,7 @@ require 'piface'
 # Listen for button 4 press
 loop do
   # Check if the button has been pressed
-  if (PiFace.read(4) == 0)
+  if (Piface.read(4) == Piface::LOW)
     puts "Button 4 pressed"
   end
   sleep 0.1 # sleep to be kind to the CPU
@@ -111,6 +111,16 @@ end
 
 ## Installation
 
+First install the pfio C Library
+
+[https://github.com/thomasmacpherson/piface](https://github.com/thomasmacpherson/piface)
+
+Enable RaspberryPi's SPI module
+
+    $ sudo modprobe spi-bcm2708
+    or
+    $ gpio load spi
+
 Add this line to your application's Gemfile:
 
     gem 'piface'
@@ -121,9 +131,8 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install PiFace
+    $ gem install piface
 
-### NOTE: Please ensure that you have first installed the [pfio C Library](https://github.com/thomasmacpherson/piface#c). You must also ensure that your Raspberry Pi has loaded SPI (eg. gpio load spi - using the [gpio Utility](https://projects.drogon.net/raspberry-pi/wiringpi/the-gpio-utility/))
 
 ## Contributing
 
