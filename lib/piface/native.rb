@@ -3,7 +3,7 @@ require "ffi"
 module Piface
   module Native
     extend FFI::Library
-    ffi_lib ['libpiface', 'libpiface-1.0', 'libpiface-1.0.so.1', '/usr/local/lib/libpiface-1.0']
+    ffi_lib ['libpiface', 'libpiface-1.0', 'libpiface-1.0.so', '/usr/local/lib/libpiface-1.0.so']
 
     attach_function :pfio_init, [], :char
     attach_function :pfio_deinit, [], :char

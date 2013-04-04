@@ -1,7 +1,10 @@
 # Change Log
 
 ## Upcoming v1.0
-- Interrupts (change, high, low)
+ - Interrupts (change, high, low)
+
+## v0.31
+ - updated the ffi load paths (bugfix for issue #1)
 
 ## v0.3
  - added new pfio.c native methods using ffi
