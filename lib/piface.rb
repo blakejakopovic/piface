@@ -29,7 +29,7 @@ module Piface
   end
 
   def self.deinit
-    Native.pfio_init
+    Native.pfio_deinit
   end
 
   def self.pin_number_to_flag(pin_number)
