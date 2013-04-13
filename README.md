@@ -43,7 +43,7 @@ Piface.write 1, 0
 ```
 
 ### Using Classes
-Sometimes it's nice to represent an output using a class. One common example is when you want to track the current state of the output.
+Sometimes it's nice to represent an output using a class. One common example is when you want to track the current state of the output. Also see the [Stateless Relay Class](https://github.com/blakejakopovic/piface#stateless-relay-class)
 ```ruby
 require 'piface'
 
