@@ -107,6 +107,54 @@ loop do
 end
 ```
 
+## Advanced Usage
+
+### Piface Initialisation
+By requiring the gem, your Piface will automatically be initialized. By default, your pins will not be reset and will remain in the existing state. This is useful when running multiple scripts and you don't want to reset the outputs (turning them all off). If you want to setup the pins you can do so by calling the init method with true.
+```ruby
+# Initialize the piface (without setting up the pins)
+Piface.init # same as Piface.init(false)
+
+# Initialize Piface and setup the pins
+Piface.init(true)
+```
+
+### Reading Output
+If you have multiple scripts running, it can be hard to track the state of your outputs.
+```ruby
+# Read the current output of pin 8 (when off)
+Piface.read_output 8
+# => 0
+
+# Read the current output of pin 2 (when on)
+Piface.read_output 2
+# => 1
+```
+
+### Stateless Relay class
+```ruby
+class Relay
+  def initialize(relay_number)
+    @relay_number = relay_number
+  end
+
+  def turn_on
+    Piface.write @relay_number, 1
+  end
+
+  def turn_off
+    Piface.write @relay_number, 0
+  end
+
+  def toggle
+    Piface.write @relay_number, Piface.read_output(1) ^ 1
+  end
+end
+
+relay2 = Relay.new(2)
+relay.toggle # toggle the light without using a stored state
+```
+
 ## Additional Resources
 * [The PiFace Digital PDF Manual](http://www.farnell.com/datasheets/1684425.pdf)
 * [pfio C Library](https://github.com/thomasmacpherson/piface/blob/master/c/)
