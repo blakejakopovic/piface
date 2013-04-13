@@ -26,4 +26,4 @@ class Relay
 end
 
 relay2 = Relay.new(2)
-relay.toggle # toggle the light without using a stored state
+relay2.toggle # toggle the light without using a stored state

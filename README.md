@@ -153,17 +153,22 @@ class Relay
     Piface.write @relay_number, 0
   end
 
+  def state
+    Piface.read_output(@relay_number)
+  end
+
   def toggle
-    Piface.write @relay_number, Piface.read_output(1) ^ 1
+    new_state = state ^ 1
+    Piface.write @relay_number, new_state
   end
 end
 
 relay2 = Relay.new(2)
-relay.toggle # toggle the light without using a stored state
+relay2.toggle # toggle the light without using a stored state
 ```
 
 ## Examples
-For more examples, check out the `example` directory.
+For more examples, check out the `examples` directory.
 * led
 * pir sensor
 * relay (same as stateless relay)
