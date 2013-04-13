@@ -2,7 +2,6 @@
  * pfio.c
  * functions for accessing the PiFace add-on for the Raspberry Pi
  */
-#include <ruby.h>
 #include "pfio.h"
 
 #undef VERBOSE_MODE
