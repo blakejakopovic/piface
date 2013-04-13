@@ -24,8 +24,8 @@ module Piface
   end
 
   private
-  def self.init
-    Native.pfio_init
+  def self.init(setup_pins = false)
+    Native.pfio_init(setup_pins)
   end
 
   def self.deinit

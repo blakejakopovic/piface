@@ -3,9 +3,12 @@
 ## Upcoming v1.0
  - Interrupts (change, high, low)
 
-## v0.4
+## v0.4.beta
  - update ffi runtime dependancy to ~> v1.7
  - updated README.md
+ - added pfio C library as gem extension
+ - updated pfio C library to allow optional pin setup (false by default)
+ - fixed deinit bug
 
 ## v0.31
  - updated the ffi load paths (bugfix for issue #1)

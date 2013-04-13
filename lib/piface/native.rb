@@ -5,7 +5,7 @@ module Piface
     extend FFI::Library
     ffi_lib File.expand_path("../pfio.so", __FILE__)
 
-    attach_function :pfio_init, [], :char
+    attach_function :pfio_init, [ :bool ], :char
     attach_function :pfio_deinit, [], :char
 
     attach_function :pfio_digital_read, [ :char ], :char

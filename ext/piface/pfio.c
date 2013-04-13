@@ -13,7 +13,8 @@ static void spi_write(char port, char value);
 static char spi_read(char port);
 
 
-char pfio_init(void)
+// char pfio_init(void)
+char pfio_init(bool setup_pins)
 {
     if ((spi = malloc(sizeof(Spi))) == NULL)
         return -1;
@@ -60,19 +61,21 @@ char pfio_init(void)
     }
     spi->maxspeed = maxspeed;
 
-    // set up some ports
-    spi_write(IOCON,  8);    // enable hardware addressing
-    spi_write(IODIRA, 0);    // set port A as outputs
-    spi_write(IODIRB, 0xFF); // set port B as inputs
-    spi_write(GPIOA,  0xFF); // set port A on
-    //spi_write(GPIOB,  0xFF); // set port B on
-    spi_write(GPPUA,  0xFF); // set port A pullups on
-    spi_write(GPPUB,  0xFF); // set port B pullups on
+    if (setup_pins == true) {
+        // set up some ports
+        spi_write(IOCON,  8);    // enable hardware addressing
+        spi_write(IODIRA, 0);    // set port A as outputs
+        spi_write(IODIRB, 0xFF); // set port B as inputs
+        spi_write(GPIOA,  0xFF); // set port A on
+        //spi_write(GPIOB,  0xFF); // set port B on
+        spi_write(GPPUA,  0xFF); // set port A pullups on
+        spi_write(GPPUB,  0xFF); // set port B pullups on
 
-    // initialise all outputs to 0
-    int i;
-    for (i = 1; i <= 8; i++)
-        pfio_digital_write(i, 0);
+        // initialise all outputs to 0
+        int i;
+        for (i = 1; i <= 8; i++)
+            pfio_digital_write(i, 0);
+    }
 
     return 0;
 }
