@@ -3,6 +3,10 @@
 ## Upcoming v1.0
  - Interrupts (change, high, low)
 
+## v0.4
+ - update ffi runtime dependancy to ~> v1.7
+ - updated README.md
+
 ## v0.31
  - updated the ffi load paths (bugfix for issue #1)
 

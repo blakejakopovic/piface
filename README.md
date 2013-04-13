@@ -120,7 +120,8 @@ First install the pfio C Library
 
 Enable RaspberryPi's SPI module
 
-    $ gpio load spi
+    $ sudo modprobe spi_bcm2708
+    $ sudo chown `id -u`.`id -g` /dev/spidev0.*
 
 Add this line to your application's Gemfile:
 
