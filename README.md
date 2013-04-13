@@ -9,10 +9,10 @@ Ruby method names, as well as other aspects, may change until version 1.0 is rel
 
 The PiFace has 8 inputs and 8 outputs. Both the inputs and outputs are linked to connectors 1-8 respectfully.
 
-Note: The pfio C library will set all outputs to LOW (zero) when first initialized.
+Note: By default, the input and output pins will not be reset when first initialized. To find out more, see [Piface Initialization](https://github.com/blakejakopovic/piface#piface-initialisation).
 
 ### Using Outputs
-Writing to outputs 1 to 8 with all turn on the LEDs. Write to outputs using Piface::LOW (or 0) for off/disable and Piface::HIGH (or 1) for on/enable.
+Writing to outputs 1 to 8 with all turn on the LEDs. Write to outputs using `Piface::LOW` (or 0) for off/disable and `Piface::HIGH` (or 1) for on/enable.
 
 Please note that the PiFace outputs are all open-collectors (meaning that they do not output any voltage). Please read the [PiFace Manual](http://www.farnell.com/datasheets/1684425.pdf) for more information.
 
@@ -109,9 +109,11 @@ end
 
 ## Advanced Usage
 
-### Piface Initialisation
-By requiring the gem, your Piface will automatically be initialized. By default, your pins will not be reset and will remain in the existing state. This is useful when running multiple scripts and you don't want to reset the outputs (turning them all off). If you want to setup the pins you can do so by calling the init method with true.
+### Piface Initialization
+By requiring the gem, your Piface will automatically be initialized. By default, your pins will not be reset and will remain in the existing state. This is useful when running multiple scripts and you don't want to reset the outputs (turning them all off). If you want to setup the pins you can do so by calling the `init` method with `true`.
 ```ruby
+require 'piface'
+
 # Initialize the piface (without setting up the pins)
 Piface.init # same as Piface.init(false)
 
@@ -120,8 +122,10 @@ Piface.init(true)
 ```
 
 ### Reading Output
-If you have multiple scripts running, it can be hard to track the state of your outputs.
+If you need to check whether or not an output is active, you can easily read an output state with the `read_output` method.
 ```ruby
+require 'piface'
+
 # Read the current output of pin 8 (when off)
 Piface.read_output 8
 # => 0
@@ -132,7 +136,10 @@ Piface.read_output 2
 ```
 
 ### Stateless Relay class
+If you have multiple scripts running, it can be hard to keep track of output states. By using a stateless class, you can implement a toggle method that reads the current state, instead of using a stored state. Keep in mind that by reading the state is it less effecient.
 ```ruby
+require 'piface'
+
 class Relay
   def initialize(relay_number)
     @relay_number = relay_number
@@ -155,6 +162,16 @@ relay2 = Relay.new(2)
 relay.toggle # toggle the light without using a stored state
 ```
 
+## Examples
+For more examples, check out the `example` directory.
+* led
+* pir sensor
+* relay (same as stateless relay)
+* toggle button
+
+## Example Projects
+* [Siriproxy Piface](https://github.com/elvisimprsntr/siriproxy-piface) - "I used my RPi, PiFace IO board, along with SiriProry as a simple voice controlled garage door opener."
+
 ## Additional Resources
 * [The PiFace Digital PDF Manual](http://www.farnell.com/datasheets/1684425.pdf)
 * [pfio C Library](https://github.com/thomasmacpherson/piface/blob/master/c/)
@@ -162,11 +179,7 @@ relay.toggle # toggle the light without using a stored state
 
 ## Installation
 
-First install the pfio C Library
-
-[https://github.com/thomasmacpherson/piface](https://github.com/thomasmacpherson/piface)
-
-Enable RaspberryPi's SPI module
+Enable RaspberryPi's SPI module (required on each reboot)
 
     $ sudo modprobe spi_bcm2708
     $ sudo chown `id -u`.`id -g` /dev/spidev0.*
