@@ -49,7 +49,7 @@ typedef struct
 typedef enum { false, true } bool;
 
 // extern char pfio_init(void);
-extern char pfio_init(bool setup_pins);
+extern char pfio_init(void);
 extern char pfio_deinit(void);
 extern char pfio_digital_read(char pin_number);
 extern void pfio_digital_write(char pin_number, char value);

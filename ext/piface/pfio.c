@@ -13,8 +13,7 @@ static void spi_write(char port, char value);
 static char spi_read(char port);
 
 
-// char pfio_init(void)
-char pfio_init(bool setup_pins)
+char pfio_init(void)
 {
     if ((spi = malloc(sizeof(Spi))) == NULL)
         return -1;
@@ -61,7 +60,6 @@ char pfio_init(bool setup_pins)
     }
     spi->maxspeed = maxspeed;
 
-    if (setup_pins == true) {
         // set up some ports
         spi_write(IOCON,  8);    // enable hardware addressing
         spi_write(IODIRA, 0);    // set port A as outputs
@@ -75,7 +73,6 @@ char pfio_init(bool setup_pins)
         int i;
         for (i = 1; i <= 8; i++)
             pfio_digital_write(i, 0);
-    }
 
     return 0;
 }

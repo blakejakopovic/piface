@@ -24,8 +24,8 @@ module Piface
   end
 
   private
-  def self.init(setup_pins = false)
-    Native.pfio_init(setup_pins)
+  def self.init
+      exit "Error: Piface initialisation failed." unless Native.pfio_init == 0
   end
 
   def self.deinit

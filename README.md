@@ -109,18 +109,6 @@ end
 
 ## Advanced Usage
 
-### Piface Initialization
-By requiring the gem, your Piface will automatically be initialized. By default, your pins will not be reset and will remain in the existing state. This is useful when running multiple scripts and you don't want to reset the outputs (turning them all off). If you want to setup the pins you can do so by calling the `init` method with `true`.
-```ruby
-require 'piface'
-
-# Initialize the piface (without setting up the pins)
-Piface.init # same as Piface.init(false)
-
-# Initialize Piface and setup the pins
-Piface.init(true)
-```
-
 ### Reading Output
 If you need to check whether or not an output is active, you can easily read an output state with the `read_output` method.
 ```ruby
