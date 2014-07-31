@@ -2,9 +2,6 @@
 
 The [pfio C Library](https://github.com/thomasmacpherson/piface/blob/master/c/) is used to control the [Pi-Face Digital Interface](http://pi.cs.man.ac.uk/interface.htm) for [Raspberry Pi](http://www.raspberrypi.org/). This gem uses the [Ruby-FFI](https://github.com/ffi/ffi) gem to bind the C functions to ruby.
 
-## !! Project is currently in ALPHA (Things may change)
-Ruby method names, as well as other aspects, may change until version 1.0 is released.
-
 ## Basic Usage
 
 The PiFace has 8 inputs and 8 outputs. Both the inputs and outputs are linked to connectors 1-8 respectfully.
